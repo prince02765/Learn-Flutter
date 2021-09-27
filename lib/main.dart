@@ -20,6 +20,7 @@ class ThisApp extends StatelessWidget {
           fontFamily: GoogleFonts.montserrat().fontFamily),
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData(brightness: Brightness.dark),
+      initialRoute: Routes.HomeRoute,
       routes: {
         "/": (context) => const LoginPage(),
         Routes.HomeRoute: (context) => const HomePage(),

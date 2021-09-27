@@ -81,7 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                         } else if (value.length < 6) {
                           return "Password length should be at least 6";
                         }
-
                         return null;
                       }),
                   const SizedBox(
