@@ -17,8 +17,6 @@ class AppThemes{
         fontWeight: FontWeight.bold
         ),
     )
-
-  
   );
 
   static ThemeData darkTheme (BuildContext context) => ThemeData(
