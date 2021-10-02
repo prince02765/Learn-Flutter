@@ -14,8 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   @override
   void initState() {
     super.initState();
@@ -37,9 +35,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    // final dummyList = List.generate(4,(Index)=> CatalogModel.items[0]);    
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Catalog App"),
@@ -47,18 +42,30 @@ class _HomePageState extends State<HomePage> {
       body:Padding(
         padding: const EdgeInsets.all(12.0),
         child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty) ?
-         ListView.builder(
-          itemCount: CatalogModel.items.length,
-          itemBuilder: (context, index){
-            return ItemWidget(
-              items: CatalogModel.items[index],
-            );
-          }
+         GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16,
+              ),
+            itemBuilder: (context, index){
+              final item = CatalogModel.items[index];
+              return Card(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)
+                ),
+                child: GridTile(
+                  // header: Text(item.name),
+                  child: Image.network(item.image),
+                  // footer: Text(item.price.toString()),
+                )
+              );
+            },
         ):
         Center(
           child: CircularProgressIndicator(),
-        )
-          ,
+        ),
       ),
       drawer: MyWidgets(),
     );
