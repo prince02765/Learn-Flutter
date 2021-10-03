@@ -6,7 +6,7 @@ class MyWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.deepPurple,
+        color: Colors.blueGrey,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -35,6 +35,16 @@ class MyWidgets extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
+                CupertinoIcons.cart,
+                color: Colors.white,
+              ),
+              title: Text(
+                "Shop",
+                textScaleFactor: 1.2,
+                style: TextStyle(color: Colors.white),),
+            ),
+            ListTile(
+              leading: Icon(
                 CupertinoIcons.profile_circled,
                 color: Colors.white,
               ),
@@ -52,7 +62,7 @@ class MyWidgets extends StatelessWidget {
                 "Contact Us",
                 textScaleFactor: 1.2,
                 style: TextStyle(color: Colors.white),),
-            )
+            ),
           ],
         ),
       ),
