@@ -1,0 +1,73 @@
+
+import 'package:flutter/material.dart';
+import 'package:futter_learn/Models/catalog.dart';
+import 'package:futter_learn/Widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:velocity_x/src/extensions/context_ext.dart';
+
+class HomeDetail extends StatelessWidget {
+  
+  final Items catalog;
+
+  const HomeDetail({Key? key, required this.catalog}) 
+  : assert(catalog!=null),
+    super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: catalog.name.text.make(),),
+      backgroundColor: AppThemes.creamColor,
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: ButtonBar(
+          alignment: MainAxisAlignment.spaceBetween,
+          buttonPadding: EdgeInsets.zero,
+          children: [
+            "\$${catalog.price}".text.bold.xl3.make(),
+            ElevatedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                  AppThemes.darkBluishColor,
+                ),
+                shape: MaterialStateProperty.all(StadiumBorder())
+              ), 
+              child: "Buy".text.xl.make()
+            ).wh(100, 50),
+          ],
+        ).p(32.0),
+      ),
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            Hero(
+              tag: Key(catalog.id.toString()),
+              child: Image.network(catalog.image)
+            ).p16(),
+            Expanded(
+              child: VxArc(
+                height: 30.0,
+                arcType: VxArcType.CONVEY,
+                edge: VxEdge.TOP,
+                child: Container(
+                  color: Colors.white,
+                  width: context.screenWidth,
+                  child: Column(
+                    children: [
+                      catalog.name.text.bold.xl4.color(AppThemes.darkBluishColor).make(),
+                      catalog.desc.text.coolGray500.xl.make(),
+                      10.heightBox,
+                    ],
+                  ).py64(),
+                ),
+              )
+            )
+          ]
+        ),
+      ),
+    );
+  }
+  
+}

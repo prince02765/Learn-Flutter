@@ -26,4 +26,5 @@ class AppThemes{
   //Colors
   static Color creamColor = Color(0xfff5f5f5);
   static Color darkBluishColor = Color(0xff403b58);
+  static Color lightDray = Color(0xffd3d3d3);
 }
