@@ -70,7 +70,7 @@ class CatalogItem extends StatelessWidget{
                         ),
                         shape: MaterialStateProperty.all(StadiumBorder())
                       ), 
-                      child: "Buy".text.make()
+                      child: "+ cart".text.make()
                     ),
                   ],
                 ).pOnly(right: 16.0)

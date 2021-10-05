@@ -16,7 +16,10 @@ class HomeDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: catalog.name.text.make(),),
+      appBar: AppBar(
+        title: catalog.name.text.make(),
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: AppThemes.creamColor,
       bottomNavigationBar: Container(
         color: Colors.white,
@@ -33,8 +36,8 @@ class HomeDetail extends StatelessWidget {
                 ),
                 shape: MaterialStateProperty.all(StadiumBorder())
               ), 
-              child: "Buy".text.xl.make()
-            ).wh(100, 50),
+              child: "Add to cart".text.xl.make()
+            ).wh(150, 50),
           ],
         ).p(32.0),
       ),
@@ -45,7 +48,7 @@ class HomeDetail extends StatelessWidget {
             Hero(
               tag: Key(catalog.id.toString()),
               child: Image.network(catalog.image)
-            ).p16(),
+            ).p32(),
             Expanded(
               child: VxArc(
                 height: 30.0,
@@ -57,10 +60,12 @@ class HomeDetail extends StatelessWidget {
                   child: Column(
                     children: [
                       catalog.name.text.bold.xl4.color(AppThemes.darkBluishColor).make(),
-                      catalog.desc.text.coolGray500.xl.make(),
+                      catalog.desc.text.coolGray500.xl.make().pOnly(top: 10),
                       10.heightBox,
+                      "Sed stet tempor sadipscing sea lorem sed rebum, sit sit stet amet takimata. Sit diam consetetur sit elitr magna, no at amet dolor est est tempor est accusam sadipscing. Sit at voluptua accusam sit kasd. Vero clita invidunt no dolor sed, et ut no diam rebum et sed lorem sed."
+                      .text.coolGray500.lg.make().p16()
                     ],
-                  ).py64(),
+                  ).pOnly(top: 64),
                 ),
               )
             )
