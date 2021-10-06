@@ -20,9 +20,9 @@ class HomeDetail extends StatelessWidget {
         title: catalog.name.text.make(),
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: AppThemes.creamColor,
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
@@ -32,7 +32,7 @@ class HomeDetail extends StatelessWidget {
               onPressed: () {},
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
-                  AppThemes.darkBluishColor,
+                  context.theme.buttonColor,
                 ),
                 shape: MaterialStateProperty.all(StadiumBorder())
               ), 
@@ -55,15 +55,15 @@ class HomeDetail extends StatelessWidget {
                 arcType: VxArcType.CONVEY,
                 edge: VxEdge.TOP,
                 child: Container(
-                  color: Colors.white,
+                  color: context.cardColor,
                   width: context.screenWidth,
                   child: Column(
                     children: [
-                      catalog.name.text.bold.xl4.color(AppThemes.darkBluishColor).make(),
-                      catalog.desc.text.coolGray500.xl.make().pOnly(top: 10),
+                      catalog.name.text.bold.xl4.color(context.accentColor).make(),
+                      catalog.desc.text.coolGray400.xl.make().pOnly(top: 10),
                       10.heightBox,
                       "Sed stet tempor sadipscing sea lorem sed rebum, sit sit stet amet takimata. Sit diam consetetur sit elitr magna, no at amet dolor est est tempor est accusam sadipscing. Sit at voluptua accusam sit kasd. Vero clita invidunt no dolor sed, et ut no diam rebum et sed lorem sed."
-                      .text.coolGray500.lg.make().p16()
+                      .text.coolGray400.lg.make().p16()
                     ],
                   ).pOnly(top: 64),
                 ),
