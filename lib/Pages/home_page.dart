@@ -1,29 +1,68 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class HomePage extends StatelessWidget {
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:futter_learn/Models/catalog.dart';
+import 'package:futter_learn/Widgets/home_widgets/catalog_header.dart';
+import 'package:futter_learn/Widgets/home_widgets/catalog_list.dart';
+import 'package:futter_learn/Widgets/drawer.dart';
+import 'package:futter_learn/Widgets/item_widget.dart';
+import 'package:futter_learn/Widgets/themes.dart';
+import 'package:futter_learn/utils/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    int days = 3;
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    await Future.delayed(Duration(seconds: 2));
+    var catalogJson = await rootBundle.loadString("assets/files/catalog.json");
+    var decodecData = jsonDecode(catalogJson);
+    var productsData = decodecData["products"];
+    print(productsData);
+    CatalogModel.items = List.from(productsData)
+                .map((items) => Items.fromMap(items))
+                .toList();
+
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Flutter Learning"),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            "This is Demo Flutter app for Learning Day: $days",
-            style: const TextStyle(
-                fontSize: 20,
-                color: Colors.indigo,
-                fontWeight: FontWeight.bold),
+      backgroundColor: context.canvasColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, Routes.cartRoute),
+        backgroundColor: context.theme.buttonColor,
+        child: Icon(CupertinoIcons.cart, color: Colors.white,),
+        ),
+      body: SafeArea(
+        child: Container(
+          padding: Vx.m32,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CatalogHeader(),
+              if (CatalogModel.items!=null && CatalogModel.items.isNotEmpty)
+                CatalogList().py8().expand()
+              else
+                CircularProgressIndicator().centered().expand(),
+            ],
           ),
         ),
       ),
-      drawer: const Drawer(),
     );
   }
 }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:futter_learn/Pages/home_page.dart';
 import 'package:futter_learn/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'Pages/cart_page.dart';
 import 'Pages/login_page.dart';
+import 'Widgets/themes.dart';
 
 void main() {
   runApp(const ThisApp());
@@ -14,16 +16,16 @@ class ThisApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.light,
-      theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          fontFamily: GoogleFonts.montserrat().fontFamily),
+      themeMode: ThemeMode.system,
+      theme: AppThemes.lightTheme(context),
       debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      darkTheme: AppThemes.darkTheme(context),
+      initialRoute: Routes.HomeRoute,
       routes: {
         "/": (context) => const LoginPage(),
         Routes.HomeRoute: (context) => const HomePage(),
-        "/login": (context) => const LoginPage()
+        Routes.HomeRoute: (context) => const HomePage(),
+        Routes.cartRoute: (context) => CartPage(),
       },
     );
   }
