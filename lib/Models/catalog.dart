@@ -1,16 +1,23 @@
 class CatalogModel{
+
+  static final catModel = CatalogModel._internal();
+
+  CatalogModel._internal();
+
+  factory CatalogModel() => catModel;
+
   static List<Items> items=[];
 
   // Get Item by id
-  static Items getById(int id)=> 
+  Items getById(int id)=> 
         items.firstWhere((element) => element.id == id, orElse: null);
 
   // Get Item by position
-  static Items getByPosition(int pos) => items[pos];
+  Items getByPosition(int pos) => items[pos];
 }
 class Items{
   final String name, desc, color, image;
-  final num price, id;
+  final int price, id;
 
   Items({required this.id, required this.name, required this.desc, required this.color, required this.image, required this.price});
 
