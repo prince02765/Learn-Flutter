@@ -40,6 +40,7 @@ class _CartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          // build(context),
           "\$${_cart.totalPrice}".text.xl4.color(context.theme.accentColor).make(),
           30.widthBox,
           ElevatedButton(
@@ -71,14 +72,15 @@ class _CartListState extends State<_CartList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _cart.items?.length,
+    return _cart.items.isEmpty ? "Cart Empty Now".text.xl3.makeCentered() : ListView.builder(
+      itemCount: _cart.items.length,
       itemBuilder: (context, index) => ListTile(
         leading: Icon(Icons.done),
         trailing: IconButton(
           icon: Icon(Icons.remove_circle_outline),
           onPressed: () {
-            
+            _cart.remove(_cart.items[index]);
+            setState(() {});
           },
         ),
         title: _cart.items[index].name.text.make(),
