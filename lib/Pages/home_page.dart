@@ -6,9 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:futter_learn/Models/catalog.dart';
 import 'package:futter_learn/Widgets/home_widgets/catalog_header.dart';
 import 'package:futter_learn/Widgets/home_widgets/catalog_list.dart';
-import 'package:futter_learn/Widgets/drawer.dart';
-import 'package:futter_learn/Widgets/item_widget.dart';
-import 'package:futter_learn/Widgets/themes.dart';
 import 'package:futter_learn/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 

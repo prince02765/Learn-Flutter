@@ -2,9 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:futter_learn/Models/catalog.dart';
 import 'package:futter_learn/Widgets/home_widgets/add_to_cart.dart';
-import 'package:futter_learn/Widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:velocity_x/src/extensions/context_ext.dart';
 
 class HomeDetail extends StatelessWidget {
   
