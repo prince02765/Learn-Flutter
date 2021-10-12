@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:futter_learn/Models/cart.dart';
-import 'package:futter_learn/Widgets/themes.dart';
-import 'package:velocity_x/src/extensions/context_ext.dart';
-import 'package:velocity_x/src/extensions/string_ext.dart';
-import 'package:velocity_x/src/flutter/padding.dart';
-import 'package:velocity_x/src/flutter/widgets.dart';
+import 'package:futter_learn/core/store.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartPage extends StatelessWidget {
@@ -33,7 +29,7 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cart;
 
     return SizedBox(
       height: 200,
@@ -63,10 +59,12 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatelessWidget{
-  final _cart = CartModel();
-
+  
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
+
+
     return _cart.items.isEmpty ? "Cart Empty Now".text.xl3.makeCentered() : ListView.builder(
       itemCount: _cart.items.length,
       itemBuilder: (context, index) => ListTile(

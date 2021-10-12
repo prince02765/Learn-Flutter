@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:futter_learn/Models/cart.dart';
 import 'package:futter_learn/Models/catalog.dart';
+import 'package:futter_learn/core/store.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AddToCart extends StatelessWidget {
@@ -11,19 +12,16 @@ class AddToCart extends StatelessWidget {
     Key? key, required this.catalog,
   }) : super(key: key);
 
- 
-  final _cart = CartModel();
-  
   @override
   Widget build(BuildContext context) {
+
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    VxState.watch(context, on: [AddMutation]);
     bool isInCart = _cart.items.contains(catalog);
     return ElevatedButton(
       onPressed: () {
         if(!isInCart){
-          isInCart = isInCart.toggle();
-          final _catalog = CatalogModel();
-          _cart.catalog = _catalog;
-          _cart.add(catalog);
+          AddMutation(catalog);
         }
       },
       style: ButtonStyle(
